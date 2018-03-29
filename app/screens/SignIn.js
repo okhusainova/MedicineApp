@@ -7,9 +7,13 @@ import {
   TextInput
 } from 'react-native';
 
-import LoginForm from '../components/LoginForm';
+import { Button } from 'react-native-elements';
 
-export default class App extends React.Component {
+import style from '../components/styles'
+import LoginForm from '../components/LoginForm';
+import { StackNavigator } from 'react-navigation';
+
+class SignInScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -24,10 +28,41 @@ export default class App extends React.Component {
           Olga Khusainova
         </Text>
          <LoginForm />
+          <Button title='Sign In' 
+                  buttonStyle={style.button}
+                  onPress={() => this.props.navigation.navigate('Details')}  
+            />
       </View>
     );
   }
 }
+
+class DetailsScreen extends React.Component {
+  render() {
+    return (
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <Text>Details Screen</Text>
+      </View>
+    );
+  }
+}
+
+
+export default StackNavigator(
+{
+  SignIn: {
+    screen: SignInScreen,
+  },
+  Details: {
+      screen: DetailsScreen,
+    }
+},
+  {
+    initialRouteName: 'SignIn',
+  }
+);
+
+
 
 
 const styles = StyleSheet.create({

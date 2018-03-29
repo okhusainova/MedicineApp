@@ -10,7 +10,7 @@ import {
 import { Button } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-
+import { StackNavigator } from 'react-navigation';
 import style from './styles'
 
 
@@ -83,7 +83,7 @@ export default class LoginForm extends Component {
           value = {this.state.password}
           password='true'
         />
-      <Button title='Sign In' buttonStyle={style.button} onPress={this.login.bind(this)}/>
+    
       </View>
     );
   }
@@ -91,3 +91,5 @@ export default class LoginForm extends Component {
 
 
 export {LoginForm} from './LoginForm';
+
+

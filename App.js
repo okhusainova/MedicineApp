@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import SignIn from './app/containers/SignIn.js';
+import SignIn from './app/screens/SignIn.js';
 
 export default class App extends React.Component {
   render() {
