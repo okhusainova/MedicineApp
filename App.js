@@ -1,8 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import Routes from './app/routes/index'
-import SignIn from './app/screens/SignIn.js';
+import Routes from './app/navigation/index'
 
 export default class App extends React.Component {
   render() {

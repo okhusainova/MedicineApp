@@ -8,10 +8,26 @@ import {
   ListView,
   ScrollView,
   Image,
-  TouchableOpacity
+  TouchableOpacity,
+  Button
 } from 'react-native';
 
+
 class HomeScreen extends React.Component {
+  static navigationOptions = ({ navigation }) => {
+    return {
+      title: 'My medication',
+      headerStyle: {
+        backgroundColor: '#68C3A3',
+      },
+      headerTintColor: '#fff',
+      headerLeft: null,
+      headerRight: (
+        <Button onPress={() => navigation.navigate('createMedication')} title="+" color="#fff" />
+      )
+    }
+  };
+
   constructor(props) {
     super(props);
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -28,7 +44,7 @@ class HomeScreen extends React.Component {
           dataSource={this.state.dataSource}
           renderRow={(data) => <Row />}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
-          renderHeader={() => <Header />}
+          // renderHeader={() => <Header />}
           renderFooter={() => <Footer />}
         />
       </ScrollView>
@@ -46,15 +62,15 @@ const Row = (props) => (
 );
 
 
-const Header = (props) => (
-  <View style={styles.inputContainer}>
-    <TextInput
-      style={styles.input}
-      placeholder="Search..."
-      onChangeText={(text) => console.log('searching for ', text)}
-    />
-  </View>
-);
+// const Header = (props) => (
+//   <View style={styles.inputContainer}>
+//     <TextInput
+//       style={styles.input}
+//       placeholder="Search..."
+//       onChangeText={(text) => console.log('searching for ', text)}
+//     />
+//   </View>
+// );
 
 
 const Footer = (props) => (

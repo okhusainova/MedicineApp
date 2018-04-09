@@ -15,9 +15,12 @@ import { Button } from 'react-native-elements';
 
 import style from '../components/styles'
 import LoginForm from '../components/LoginForm';
-import { StackNavigator } from 'react-navigation';
 
 class SignInScreen extends React.Component {
+  static navigationOptions = {
+    headerMode: "none"
+  };
+
   render() {
     return (
       <View style={styles.container}>
@@ -34,14 +37,16 @@ class SignInScreen extends React.Component {
          <LoginForm />
           <Button title='Sign In' 
                   buttonStyle={style.button}
-                  onPress={() => this.props.navigation.navigate('Home')}  
+                  onPress={this._goHome}  
             />
       </View>
     );
   }
+
+  _goHome = () => {
+      this.props.navigation.navigate('Home');
+    }
 }
-
-
 
 const styles = StyleSheet.create({
   container: {
