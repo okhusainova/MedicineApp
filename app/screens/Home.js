@@ -12,6 +12,7 @@ import {
   Button
 } from 'react-native';
 
+import medications from '../data/medications.json';
 
 class HomeScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
@@ -30,11 +31,10 @@ class HomeScreen extends React.Component {
 
   constructor(props) {
     super(props);
+
     const ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
     this.state = {
-      dataSource: ds.cloneWithRows([
-        'John', 'Joel', 'James', 'Jimmy', 'Jackson', 'Jillian'
-      ])
+      dataSource: ds.cloneWithRows(medications)
     };
   }
   render() {
@@ -42,7 +42,8 @@ class HomeScreen extends React.Component {
       <ScrollView contentContainerStyle={styles.containerOfList}>
         <ListView style={styles.listview}
           dataSource={this.state.dataSource}
-          renderRow={(data) => <Row />}
+          renderRow={(rowData) => <Row {...rowData}/>}
+          // renderRow={(rowData) => <Text>{}</Text>}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
           // renderHeader={() => <Header />}
           renderFooter={() => <Footer />}
@@ -53,10 +54,17 @@ class HomeScreen extends React.Component {
 }
 
 const Row = (props) => (
+  // console.log(this.props)
   <View style={styles.containerOfList}>
-    <Image source={require('../imgs/cat.jpeg')} style={styles.photo} />
-    <Text style={styles.text}>
-      Аскорбиновая кислота
+    <Image source={require('../imgs/pills.png')} style={styles.photo} />
+    <Text>
+      <Text style={styles.text}>
+        {`${props.name}`}
+      </Text>
+      {'\n'}
+      <Text style={styles.additionalText}>
+        {`${props.doze}`}
+      </Text>
     </Text>
   </View>
 );
@@ -157,6 +165,9 @@ containerFooter: {
   textFooter: {
     color: '#8E8E8E',
   },
+  additionalText: {
+    color: '#2c3e50'
+  }
 });
 
 export default HomeScreen;
