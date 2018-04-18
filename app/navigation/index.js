@@ -2,8 +2,9 @@ import { StackNavigator } from 'react-navigation';
 import SignInScreen from '../screens/SignIn'
 import HomeScreen from '../screens/Home'
 import createMedicationScreen from '../screens/createMedication'
+import AboutMedScreen from '../screens/medicationAbout'
 
-const Routes = StackNavigator(
+const MainStack = StackNavigator(
 {
   SignIn: {
     screen: SignInScreen,
@@ -15,9 +16,9 @@ const Routes = StackNavigator(
       screen: HomeScreen
     },
 
-  createMedicationScreen: {
+  createMedication: {
       screen: createMedicationScreen
-    }  
+    }
 },
   {
     // headerMode: "none",
@@ -25,4 +26,19 @@ const Routes = StackNavigator(
 }
 );
 
-export default Routes;
+const RootStack = StackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    aboutMedication: {
+      screen: AboutMedScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
+  }
+);
+
+export default RootStack;
