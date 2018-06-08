@@ -38,40 +38,39 @@ class HomeScreen extends React.Component {
     };
   }
   render() {
-    console.log(this.props.navigation);
     return (
       <ScrollView contentContainerStyle={styles.containerOfList}>
         <ListView style={styles.listview}
           dataSource={this.state.dataSource}
-          renderRow={(rowData) => <Row {...rowData} navigation={this.props.navigation}/>}
+          renderRow={(rowData) => <Row {...rowData} callback = {this._goAboutMed}/>}
           renderSeparator={(sectionId, rowId) => <View key={rowId} style={styles.separator} />}
           // renderHeader={() => <Header />}
           renderFooter={() => <Footer />}
         />
       </ScrollView>
     );
+    
+    _goAboutMed = () => {
+      this.props.navigation.navigate('aboutMedication')
+    }
   }
 }
 
-const Row = (props) => (
-  <TouchableOpacity style={styles.containerOfList} onPress={() => props.navigate('aboutMedication')}>
+const Row = (data) => (
+  <TouchableOpacity style={styles.containerOfList} onPress={() => this.props.callback()}>
     <Image source={require('../imgs/pills.png')} style={styles.photo} />
     <Text>
       <Text style={styles.text}>
-        {`${props.name}`}
+        {`${data.name}`}
       </Text>
       {'\n'}
       <Text style={styles.additionalText}>
-        {`${props.doze}`}
+        {`${data.doze}`}
       </Text>
     </Text>
 
   </TouchableOpacity>
 );
-
-_goAboutMed = () => {
-      this.props.navigation.navigate('aboutMedication');
-    }
 
 
 // const Header = (props) => (
